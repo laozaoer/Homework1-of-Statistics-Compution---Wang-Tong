@@ -8,7 +8,7 @@ using namespace Rcpp;
 
 // CDLasso
 arma::vec CDLasso(const arma::vec& y, const arma::mat& X, double lambda, double c);
-RcppExport SEXP _Lasso_CDLasso(SEXP ySEXP, SEXP XSEXP, SEXP lambdaSEXP, SEXP cSEXP) {
+RcppExport SEXP _CDLasso_CDLasso(SEXP ySEXP, SEXP XSEXP, SEXP lambdaSEXP, SEXP cSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -20,28 +20,13 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// POLasso
-arma::vec POLasso(arma::vec& y, arma::mat& X, double lambda, double c);
-RcppExport SEXP _Lasso_POLasso(SEXP ySEXP, SEXP XSEXP, SEXP lambdaSEXP, SEXP cSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec& >::type y(ySEXP);
-    Rcpp::traits::input_parameter< arma::mat& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
-    Rcpp::traits::input_parameter< double >::type c(cSEXP);
-    rcpp_result_gen = Rcpp::wrap(POLasso(y, X, lambda, c));
-    return rcpp_result_gen;
-END_RCPP
-}
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_Lasso_CDLasso", (DL_FUNC) &_Lasso_CDLasso, 4},
-    {"_Lasso_POLasso", (DL_FUNC) &_Lasso_POLasso, 4},
+    {"_CDLasso_CDLasso", (DL_FUNC) &_CDLasso_CDLasso, 4},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_Lasso(DllInfo *dll) {
+RcppExport void R_init_CDLasso(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }
